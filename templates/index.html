@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banner Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #1a1a1a;
+            --text-color: #ffffff;
+            --input-bg: #2d2d2d;
+            --input-border: #404040;
+            --button-bg: #4CAF50;
+            --button-hover: #45a049;
+            --preview-border: #404040;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            background-color: var(--input-bg);
+            border: 1px solid var(--input-border);
+            border-radius: 6px;
+            color: var(--text-color);
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--button-bg);
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+        }
+
+        .preview {
+            margin-top: 30px;
+            border: 2px solid var(--preview-border);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background-color: var(--input-bg);
+        }
+
+        .preview h3 {
+            margin-top: 0;
+            color: var(--text-color);
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid var(--input-border);
+        }
+
+        .developers {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s ease;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--button-bg);
+        }
+
+        .separator {
+            color: var(--input-border);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Banner Generator</h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="text1">Main Text:</label>
+                <input type="text" id="text1" name="text1" placeholder="Enter main text">
+            </div>
+            <div class="form-group">
+                <label for="text2">Subtitle:</label>
+                <input type="text" id="text2" name="text2" placeholder="Enter subtitle">
+            </div>
+            <button type="submit">Generate Banner</button>
+        </form>
+
+        {% if image_data %}
+        <div class="preview">
+            <h3>Preview:</h3>
+            <img src="data:image/png;base64,{{ image_data }}" alt="Banner preview">
+            <br><br>
+            <a download="banner.png" href="data:image/png;base64,{{ image_data }}">
+                <button>Download Banner</button>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="footer">
+        <div class="developers">
+            <a href="https://twitter.com/BuzzMalx" target="_blank">
+                developed by BuzzMalx
+            </a>
+            <span class="separator">|</span>
+            <a href="https://twitter.com/Tipwotip" target="_blank">
+                developed by Tipwotip
+            </a>
+        </div>
+    </footer>
+</body>
+</html>
